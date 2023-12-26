@@ -67,6 +67,9 @@ class manager {
             return true;
         }
 
+        // Remove <p>...</p>, <a href="...">...</a>, <br/>, etc.
+        $message = strip_tags($message);
+
         $response = $this->send_api_command('sendMessage', ['chat_id' => $chatid, 'text' => $message]);
         return (!empty($response) && isset($response->ok) && ($response->ok == true));
     }
